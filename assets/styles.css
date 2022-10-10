@@ -65,7 +65,7 @@ a{
     border-radius: 0.5rem;
 }
 
-.btn:active {
+.btn:hover {
     background-color: blue;
 }
 
