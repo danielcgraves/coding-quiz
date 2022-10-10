@@ -1,6 +1,18 @@
-* a{
+/* Universal Styles */
+
+* {
+    box-sizing: border-box;
+}
+
+a{
     text-decoration: none;
 }
+
+.hide{
+    display: none;
+}
+
+/* Top of Page */
 
 .top {
     display: flex;
@@ -12,9 +24,39 @@
     margin: 1rem 1rem;
 }
 
-.starting-card {
+/* Question Section Styles */
+
+#question-card {
+    margin: 0 25%;
+    text-align: left;
+}
+
+.answer-grid {
+    display: grid;    
+}
+
+.answer-grid button{
+    margin: 1px 0;
+    width: 40%;
+}
+
+/* Question Result Styles */
+
+#result {
+    font-style: italic;
+    opacity: 50%;
+    margin: 5px 25%;
+    border-top: 1px black dotted;
+}
+
+
+/* Card Styles */
+
+.card {
     text-align: center;
 }
+
+/* Button Styles */
 
 .btn {
     color: white;
@@ -26,3 +68,5 @@
 .btn:active {
     background-color: blue;
 }
+
+

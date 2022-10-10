@@ -6,13 +6,18 @@
 // Make the game over card or page
 // Create a card or page that allows players to enter their initials and save their score in a high score page
 
+var startingCard = document.getElementById("starting-card")
 
+var questionCard = document.getElementById("question-card")
+
+var startButton = document.getElementById("start-btn")
 
 var timeEl = document.querySelector(".time")
 
 var secondsLeft = 100;
 
 function setTime() {
+    startButton, startingCard.classList.add('hide');
     var timerInterval = setInterval(function(){
         secondsLeft--;
         timeEl.textContent = "Time: " + secondsLeft;
@@ -23,8 +28,8 @@ function setTime() {
     }, 1000);
 }
 
-var startButton = document.querySelector("#start-btn")
 
-startButton.addEventListener("click", function(){
-    setTime();
-});
+
+startButton.addEventListener("click", setTime)
+
+
