@@ -1,0 +1,28 @@
+* a{
+    text-decoration: none;
+}
+
+.top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.top div {
+    margin: 1rem 1rem;
+}
+
+.starting-card {
+    text-align: center;
+}
+
+.btn {
+    color: white;
+    background-color: darkblue;
+    padding: 0.25rem 2rem;
+    border-radius: 0.5rem;
+}
+
+.btn:active {
+    background-color: blue;
+}
