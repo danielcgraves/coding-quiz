@@ -1,8 +1,5 @@
 //Pseudo-code
 
-// - Make the question card dynamic so it changes questions after answered
-// - Make incorrect answers to the question deduct time from the clock
-// Make the game over card or page
 // Create a card or page that allows players to enter their initials and save their score in a high score page
 
 var startingCardEl = document.getElementById("starting-card");
@@ -14,6 +11,10 @@ var startButton = document.getElementById("start-btn");
 var questionEl = document.getElementById("question");
 
 var answerEls = document.querySelectorAll(".answer");
+
+var resultEl = document.getElementById("result");
+
+var initialsCardEl = document.getElementById("initials-card")
 
 var currentQuestionIndex;
 
@@ -30,12 +31,11 @@ function startQuiz() {
     questionCardEl.classList.remove("hide");
      //sets up the next question
     setNextQuestion();
-     //begins timer
-     
+    
     answerEls.forEach(answerEl => {
         answerEl.addEventListener("click", handleNextClick)
         })
-
+    //begins timer
     var timerInterval = setInterval(function(){
         secondsLeft--;
         timeEl.textContent = "Time: " + secondsLeft;
@@ -46,16 +46,28 @@ function startQuiz() {
     }, 1000);
 }
 
-function handleNextClick() {
+//Handles the clicks and gives logic to what the next click will do.
+function handleNextClick(event) {
+       console.log(event.target.textContent);
+        if (event.target.textContent === questions[currentQuestionIndex].answer){     
+            resultEl.classList.remove("hide");
+            resultEl.textContent = "Correct";
+        } else {
+            secondsLeft = secondsLeft - 10;
+            resultEl.classList.remove("hide");
+            resultEl.textContent = "Incorrect";
+        }
         currentQuestionIndex++;
             if (currentQuestionIndex === questions.length){
-                return;
+                questionCardEl.classList.add("hide");    
+                initialsCardEl.classList.remove("hide");
             } else {
                 setNextQuestion();
             }
 }
 
 
+//Grabs question for setNextQuestion function from the currentQuestionIndex
 function setNextQuestion() {
     showQuestion(questions[currentQuestionIndex]);
 }
@@ -125,4 +137,3 @@ var questions = [
     },
     
 ]
-

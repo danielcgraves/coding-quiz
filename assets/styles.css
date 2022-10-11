@@ -2,6 +2,7 @@
 
 * {
     box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 a{
@@ -26,7 +27,8 @@ a{
 
 /* Question Section Styles */
 
-#question-card {
+#question-card,
+#initials-card {
     margin: 0 25%;
     text-align: left;
 }
