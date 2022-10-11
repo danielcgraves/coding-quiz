@@ -16,7 +16,11 @@ var resultEl = document.getElementById("result");
 
 var initialsCardEl = document.getElementById("initials-card")
 
+var finalScoreEl = document.getElementById("final-score")
+
 var currentQuestionIndex;
+
+var timerInterval;
 
 var timeEl = document.querySelector(".time");
 
@@ -36,7 +40,7 @@ function startQuiz() {
         answerEl.addEventListener("click", handleNextClick)
         })
     //begins timer
-    var timerInterval = setInterval(function(){
+        timerInterval = setInterval(function(){
         secondsLeft--;
         timeEl.textContent = "Time: " + secondsLeft;
 
@@ -48,7 +52,6 @@ function startQuiz() {
 
 //Handles the clicks and gives logic to what the next click will do.
 function handleNextClick(event) {
-       console.log(event.target.textContent);
         if (event.target.textContent === questions[currentQuestionIndex].answer){     
             resultEl.classList.remove("hide");
             resultEl.textContent = "Correct";
@@ -61,6 +64,8 @@ function handleNextClick(event) {
             if (currentQuestionIndex === questions.length){
                 questionCardEl.classList.add("hide");    
                 initialsCardEl.classList.remove("hide");
+                clearInterval(timerInterval);
+                finalScoreEl.textContent = secondsLeft;
             } else {
                 setNextQuestion();
             }

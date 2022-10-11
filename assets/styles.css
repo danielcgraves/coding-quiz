@@ -71,4 +71,8 @@ a{
     background-color: blue;
 }
 
+/* Other Styles */
 
+#final-score {
+    font-weight: bold;
+}
