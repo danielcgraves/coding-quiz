@@ -1,5 +1,5 @@
 //Pseudo-code
-//Create question card
+
 // - Make the question card dynamic so it changes questions after answered
 // - Make incorrect answers to the question deduct time from the clock
 // Make the game over card or page
@@ -13,15 +13,9 @@ var startButton = document.getElementById("start-btn");
 
 var questionEl = document.getElementById("question");
 
-var answer1 = document.getElementById("answer-1")
+var answerEls = document.querySelectorAll(".answer");
 
-var answer2 = document.getElementById("answer-2")
-
-var answer3 = document.getElementById("answer-3")
-
-var answer4 = document.getElementById("answer-4")
-
-var currentQuestion
+var currentQuestionIndex;
 
 var timeEl = document.querySelector(".time");
 
@@ -31,12 +25,17 @@ function startQuiz() {
      //hides start screen
     startingCardEl.classList.add("hide");
      //Sets which question in the array will show
-    currentQuestion = 0;
+    currentQuestionIndex = 0;
      //reveals question screen
     questionCardEl.classList.remove("hide");
      //sets up the next question
     setNextQuestion();
      //begins timer
+     
+    answerEls.forEach(answerEl => {
+        answerEl.addEventListener("click", handleNextClick)
+        })
+
     var timerInterval = setInterval(function(){
         secondsLeft--;
         timeEl.textContent = "Time: " + secondsLeft;
@@ -47,25 +46,83 @@ function startQuiz() {
     }, 1000);
 }
 
-function setNextQuestion() {
-    showQuestion(questions[currentQuestion]);
+function handleNextClick() {
+        currentQuestionIndex++;
+            if (currentQuestionIndex === questions.length){
+                return;
+            } else {
+                setNextQuestion();
+            }
 }
 
+
+function setNextQuestion() {
+    showQuestion(questions[currentQuestionIndex]);
+}
+
+//Takes question from questions array and sets it to the questionEl in html
 function showQuestion(question) {
     questionEl.innerText = question.question;
+    question.options.forEach((option, index) => {
+        answerEls[index].innerText = option;
+    })
+    
 }
+
+
 
 //Starts quiz when start button is clicked
 startButton.addEventListener("click", startQuiz)
 
 //questions for quiz 
 var questions = [
+  
+    
+    
     {
-        question: "Who is the best?",
+        question: "What is 1 + 1",
         options: [
-            { text: "Dain", correct: true },
-            { text: "Not Dain", correct: false}
-        ]
-    }
+            "2",
+            "3",
+            "4",
+            "5",
+        ],
+        answer: "2"
+    
+    },
+    {
+        question: "What is 1 + 2",
+        options: [
+            "2",
+            "3",
+            "4",
+            "5",
+        ],
+        answer: "3"
+    
+    },
+    {
+        question: "What is 1 + 3",
+        options: [
+            "2",
+            "3",
+            "4",
+            "5",
+        ],
+        answer: "4"
+    
+    },
+    {
+        question: "What is 1 + 4",
+        options: [
+            "2",
+            "3",
+            "4",
+            "5",
+        ],
+        answer: "5"
+    
+    },
+    
 ]
 
