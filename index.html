@@ -11,7 +11,7 @@
 <body>
     <section class="top">
         <div>
-            <a href="#">View high scores</a> 
+            <a href="#" id="high-scores-link">View high scores</a> 
         </div>
         <div class="time">
             Time: 0
@@ -37,12 +37,19 @@
     <section id="initials-card" class="card hide">
         <h2>All Done!</h2>
         <p>Your final score is: <span id="final-score"></span></p>
-        <input type="text" placeholder="Enter Initials Here">
-
+        <input type="text" placeholder="Enter Initials Here" id="user-initials"><button id="submit-btn" class="btn">Submit</button>
     </section>
 
     <section>
         <h3 id="result" class="hide"></h3>
+    </section>
+
+    <section id="highscores-page" class="card hide">
+        <h2>High Scores</h2>
+        <p id="highscores-placement">No High Scores Yet!</p>
+        <button id="go-back-btn" class="btn">Go Back</button>
+        <button id="clear-btn" class="btn">Clear High Scores</button>
+
     </section>
 
     <script src="./assets/script.js"></script>

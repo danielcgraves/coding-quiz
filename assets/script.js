@@ -2,6 +2,8 @@
 
 // Create a card or page that allows players to enter their initials and save their score in a high score page
 
+//Variables
+
 var startingCardEl = document.getElementById("starting-card");
 
 var questionCardEl = document.getElementById("question-card");
@@ -14,9 +16,21 @@ var answerEls = document.querySelectorAll(".answer");
 
 var resultEl = document.getElementById("result");
 
-var initialsCardEl = document.getElementById("initials-card")
+var initialsCardEl = document.getElementById("initials-card");
 
-var finalScoreEl = document.getElementById("final-score")
+var finalScoreEl = document.getElementById("final-score");
+
+var highscoresPage = document.getElementById("highscores-page");
+
+var submitButton = document.getElementById("submit-btn");
+
+var goBackButton = document.getElementById("go-back-btn");
+
+var clearButton = document.getElementById("clear-btn");
+
+var highScoresLink = document.getElementById("high-scores-link");
+
+var userInitials;
 
 var currentQuestionIndex;
 
@@ -25,6 +39,8 @@ var timerInterval;
 var timeEl = document.querySelector(".time");
 
 var secondsLeft = 100;
+
+//Main Quiz function
 
 function startQuiz() {
      //hides start screen
@@ -46,6 +62,9 @@ function startQuiz() {
 
         if(secondsLeft <= 0) {
             clearInterval(timerInterval);
+            timeEl.classList.add("hide");
+            questionCardEl.classList.add("hide");    
+            initialsCardEl.classList.remove("hide");
         }
     }, 1000);
 }
@@ -62,11 +81,12 @@ function handleNextClick(event) {
         }
         currentQuestionIndex++;
             if (currentQuestionIndex === questions.length){
+                timeEl.classList.add("hide");
                 questionCardEl.classList.add("hide");    
                 initialsCardEl.classList.remove("hide");
-                clearInterval(timerInterval);
                 finalScoreEl.textContent = secondsLeft;
-            } else {
+                clearInterval(timerInterval);
+                } else {
                 setNextQuestion();
             }
 }
@@ -82,16 +102,76 @@ function showQuestion(question) {
     questionEl.innerText = question.question;
     question.options.forEach((option, index) => {
         answerEls[index].innerText = option;
-    })
-    
+    }) 
 }
 
 
+//Submits score and initials to localStorage
 
-//Starts quiz when start button is clicked
-startButton.addEventListener("click", startQuiz)
+
+
+function submitScore() {
+    var userScore = secondsLeft;
+    localStorage.setItem("userScore", JSON.stringify(userScore));
+    var userInitials = document.getElementById("user-initials").value;
+    localStorage.setItem("userInitials", userInitials);
+    initialsCardEl.classList.add("hide");
+    resultEl.classList.add("hide"); 
+    highscoresPage.classList.remove("hide");
+    showHighScores();
+
+    function showHighScores(){
+        var lastHighScore = JSON.parse(localStorage.getItem("userScore"));
+        var lastUserInitials = localStorage.getItem("userInitials");
+        if (lastHighScore !== null) {
+            document.querySelector("#highscores-placement").textContent =  lastUserInitials + " - " + lastHighScore;
+
+
+        }
+    }
+}
+
+//Go Back Functionality
+
+function goBack() {
+    location.reload();
+}
+
+//Clearing High Scores Logic
+
+function clearHighScores() {
+    document.querySelector("#highscores-placement").textContent = "No High Scores Yet!";
+    localStorage.clear();
+}
+
+function viewHighScores() {
+    startingCardEl.classList.add("hide");
+    questionCardEl.classList.add("hide");
+    initialsCardEl.classList.add("hide");
+    timeEl.classList.add("hide");
+    resultEl.classList.add("hide");
+    highscoresPage.classList.remove("hide");
+}
+
+
+//Event Listeners
+
+startButton.addEventListener("click", startQuiz);
+
+submitButton.addEventListener("click", submitScore);
+
+goBackButton.addEventListener("click", goBack);
+
+clearButton.addEventListener("click", clearHighScores);
+
+highScoresLink.addEventListener("click", viewHighScores);
+
+
+
+
 
 //questions for quiz 
+
 var questions = [
   
     
