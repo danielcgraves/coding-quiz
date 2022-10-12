@@ -38,7 +38,7 @@ var timerInterval;
 
 var timeEl = document.querySelector(".time");
 
-var secondsLeft = 100;
+var secondsLeft = 50;
 
 //Main Quiz function
 
@@ -177,47 +177,47 @@ var questions = [
     
     
     {
-        question: "What is 1 + 1",
+        question: "Commonly used data types do not include: .",
         options: [
-            "2",
-            "3",
-            "4",
-            "5",
+            "Strings",
+            "Booleans",
+            "Alerts",
+            "Numbers",
         ],
-        answer: "2"
+        answer: "Alerts"
     
     },
     {
-        question: "What is 1 + 2",
+        question: "The Condition of an if/else statement is enclosed in _____.",
         options: [
-            "2",
-            "3",
-            "4",
-            "5",
+            "Quotes",
+            "Curly Braces",
+            "Square Brackets",
+            "Parenthesis",
         ],
-        answer: "3"
+        answer: "Parenthesis"
     
     },
     {
-        question: "What is 1 + 3",
+        question: "Arrays in JavaScript can be used to store: .",
         options: [
-            "2",
-            "3",
-            "4",
-            "5",
+            "Numbers and Strings",
+            "Other Arrays",
+            "Booleans",
+            "All of the above",
         ],
-        answer: "4"
+        answer: "All of the above"
     
     },
     {
-        question: "What is 1 + 4",
+        question: "String values must be enclosed within _____ when being assigned to variables.",
         options: [
-            "2",
-            "3",
-            "4",
-            "5",
+            "Quotes",
+            "Curly Braces",
+            "Square Brackets",
+            "Parenthesis",
         ],
-        answer: "5"
+        answer: "Quotes"
     
     },
     
